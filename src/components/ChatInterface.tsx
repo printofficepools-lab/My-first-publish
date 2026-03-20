@@ -17,7 +17,7 @@ export const ChatInterface: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: "Hello I am the Quad Father your Quadriplegia AI assistant. How can I help your life today?",
+      text: "Hello I'm Quadro Specifically tailored for quadriplegics and their caretakers. how can I help you Ask me anything?",
       sender: 'bot',
       timestamp: new Date(),
     },
