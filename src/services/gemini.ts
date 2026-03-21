@@ -16,6 +16,7 @@ export const generateResponse = async (prompt: string) => {
         - Actively search for and provide links to specific products (including Pacific products and other relevant brands) and specialized companies that are relevant to the user's query (e.g., specialized wheelchairs, adaptive tools, home automation for accessibility).
         - ONLY provide the top three (3) most pertinent links to companies or products that are directly relevant to the subject.
         - Ensure links are clickable and lead to reputable sources or manufacturers.
+        - ALWAYS provide full URLs with protocols (e.g., https://www.example.com).
         - DO NOT display any media, including pictures, diagrams, or videos.
         - DO NOT use Markdown image syntax or provide links to YouTube videos.
         

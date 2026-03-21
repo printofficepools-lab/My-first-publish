@@ -143,20 +143,38 @@ export const ChatInterface: React.FC = () => {
                       remarkPlugins={[remarkGfm]}
                       components={{
                         a: ({ node, href, children, ...props }) => {
+                          const normalizeUrl = (url: string) => {
+                            if (!url) return url;
+                            if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('mailto:') || url.startsWith('tel:')) {
+                              return url;
+                            }
+                            // If it looks like a domain (has a dot and no spaces), prepend https://
+                            if (url.includes('.') && !url.includes(' ')) {
+                              return `https://${url}`;
+                            }
+                            return url;
+                          };
+
                           const getDomain = (url: string) => {
                             try {
-                              const domain = new URL(url).hostname;
+                              const normalized = normalizeUrl(url);
+                              const domain = new URL(normalized).hostname;
                               return domain.replace(/^www\./, '');
                             } catch {
                               return url;
                             }
                           };
-                          const displayValue = href ? getDomain(href) : children;
+
+                          const normalizedHref = href ? normalizeUrl(href) : '';
+                          // If the children is the same as the href, show the domain instead
+                          const isUrlAsText = typeof children === 'string' && (children === href || children.includes(href || ''));
+                          const displayValue = isUrlAsText ? getDomain(normalizedHref) : children;
+
                           return (
                             <a 
-                              href={href} 
+                              href={normalizedHref} 
                               {...props} 
-                              className="text-blue-200 underline hover:text-blue-100 transition-colors font-bold" 
+                              className="text-blue-200 underline hover:text-blue-100 transition-colors font-bold break-all" 
                               target="_blank" 
                               rel="noopener noreferrer"
                             >
