@@ -262,11 +262,12 @@ export const ChatInterface: React.FC = () => {
       </footer>
 
       {/* Bottom Branding Footer */}
-      <footer className="p-1 border-t border-white/10 bg-blue-800 flex items-center z-10" role="contentinfo">
+      <footer className="p-2 border-t border-white/10 bg-blue-800 flex items-center z-10" role="contentinfo">
         <div className="w-14 h-7 shrink-0" aria-hidden="true" />
         <div className="flex-1 text-center">
           <h2 className="text-xl font-serif italic font-bold text-white leading-tight">
-            Quad Father
+            Quadro
+            <span className="block text-sm font-normal opacity-80">By the Quad Father</span>
           </h2>
         </div>
         <div className="w-14 shrink-0" aria-hidden="true" />

@@ -1,6 +1,6 @@
 {
-  "name": "Quad Father",
-  "description": "An accessible AI-powered assistant designed to answer questions and provide support for individuals with quadriplegia, featuring voice-first interactions.",
+  "name": "Quadro AI Assistant",
+  "description": "Quadro is a one-of-a-kind AI assistant specifically tailored for quadriplegics and their caretakers. Empowering independence through voice-first accessibility, personalized support, and expert guidance for the quadriplegic community.",
   "requestFramePermissions": [
     "microphone"
   ]
