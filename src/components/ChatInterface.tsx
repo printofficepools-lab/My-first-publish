@@ -118,7 +118,7 @@ export const ChatInterface: React.FC = () => {
       {/* Chat Area */}
       <main 
         ref={mainRef}
-        className="flex-1 overflow-y-auto p-5 space-y-5 scrollbar-hide"
+        className="flex-1 overflow-y-auto p-5 space-y-5 scroll-smooth"
         role="log"
         aria-live="polite"
         aria-relevant="additions text"
@@ -199,7 +199,7 @@ export const ChatInterface: React.FC = () => {
                             <a 
                               href={normalizedHref} 
                               {...props} 
-                              className="text-blue-200 underline hover:text-blue-100 transition-colors font-bold break-all" 
+                              className="text-red-400 underline hover:text-white transition-colors font-bold break-all" 
                               target="_blank" 
                               rel="noopener noreferrer"
                             >
