@@ -30,8 +30,21 @@ export const generateResponse = async (prompt: string) => {
       },
     });
     return response.text || "I'm sorry, I couldn't generate a response.";
-  } catch (error) {
+  } catch (error: any) {
     console.error("Gemini API Error:", error);
-    return "I'm having trouble connecting right now. Please try again later.";
+    
+    if (error.message?.includes('API_KEY_INVALID')) {
+      return "There's a configuration issue with the assistant's brain. Please ask your caretaker to check the API key settings.";
+    }
+    
+    if (error.message?.includes('fetch failed') || error.name === 'TypeError') {
+      return "I'm having trouble connecting to the internet. Please check your connection and try again.";
+    }
+
+    if (error.message?.includes('safety')) {
+      return "I'm sorry, I cannot answer that question as it might violate safety guidelines. Please try asking in a different way.";
+    }
+
+    return "I've encountered an unexpected issue and can't respond right now. Please try again in a moment.";
   }
 };

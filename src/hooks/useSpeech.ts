@@ -24,7 +24,29 @@ export const useSpeech = () => {
     };
 
     recognition.onerror = (event: any) => {
-      setError(event.error);
+      let message = 'An error occurred with voice recognition.';
+      
+      switch (event.error) {
+        case 'no-speech':
+          message = 'No speech was detected. Please try again.';
+          break;
+        case 'audio-capture':
+          message = 'Microphone not found or not working. Please check your settings.';
+          break;
+        case 'not-allowed':
+          message = 'Microphone permission was denied. Please allow access to use voice commands.';
+          break;
+        case 'network':
+          message = 'A network error occurred during voice recognition.';
+          break;
+        case 'service-not-allowed':
+          message = 'Voice recognition is not allowed by your browser or device.';
+          break;
+        default:
+          message = `Voice recognition error: ${event.error}`;
+      }
+      
+      setError(message);
       setIsListening(false);
     };
 
@@ -81,5 +103,9 @@ export const useSpeech = () => {
     window.speechSynthesis.speak(utterance);
   }, []);
 
-  return { isListening, transcript, error, startListening, speak, setTranscript };
+  const clearError = useCallback(() => {
+    setError(null);
+  }, []);
+
+  return { isListening, transcript, error, startListening, speak, setTranscript, clearError };
 };

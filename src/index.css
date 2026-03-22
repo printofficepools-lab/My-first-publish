@@ -4,6 +4,12 @@
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Cormorant Garamond", serif;
+  
+  --color-blue-100: #e6e6ff;
+  --color-blue-200: #ccccff;
+  --color-blue-500: #3333ff;
+  --color-blue-800: #3333ff;
+  --color-blue-900: #3333ff;
 }
 
 .scrollbar-hide::-webkit-scrollbar {
@@ -17,7 +23,7 @@
 :root {
   --bg: #f8fafc;
   --text: #0f172a;
-  --accent: #005A9C; /* Standard Accessibility Blue */
+  --accent: #3333ff;
   --card: #ffffff;
 }
 

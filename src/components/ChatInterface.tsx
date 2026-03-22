@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Mic, Send, RefreshCw, User } from 'lucide-react';
+import { Mic, Send, RefreshCw, User, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -26,7 +26,7 @@ export const ChatInterface: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isAutoSpeak, setIsAutoSpeak] = useState(true);
   const mainRef = useRef<HTMLElement>(null);
-  const { isListening, transcript, startListening, speak, setTranscript } = useSpeech();
+  const { isListening, transcript, error: speechError, startListening, speak, setTranscript, clearError: clearSpeechError } = useSpeech();
 
   const scrollToBottom = () => {
     if (mainRef.current) {
@@ -47,6 +47,9 @@ export const ChatInterface: React.FC = () => {
 
   const handleSend = async (text: string) => {
     if (!text.trim()) return;
+
+    // Clear any existing speech errors when starting a new interaction
+    clearSpeechError();
 
     const userMessage: Message = {
       id: Date.now().toString(),
@@ -78,6 +81,28 @@ export const ChatInterface: React.FC = () => {
 
   return (
     <div className="flex flex-col h-[100dvh] w-full max-w-6xl mx-auto bg-white shadow-2xl overflow-hidden border-x border-black/5">
+      {/* Error Alert for Speech */}
+      <AnimatePresence>
+        {speechError && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="bg-red-500 text-white p-3 text-center text-sm font-bold relative z-20 flex items-center justify-between px-6"
+            role="alert"
+          >
+            <span className="flex-1">{speechError}</span>
+            <button 
+              onClick={clearSpeechError}
+              className="ml-4 p-1 hover:bg-white/20 rounded-full transition-colors"
+              aria-label="Dismiss error"
+            >
+              <X size={16} />
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Header */}
       <header className="p-2 border-b border-white/10 bg-blue-800 flex items-center z-10" role="banner">
         <div className="w-14 h-14 shrink-0" aria-hidden="true" />
@@ -245,10 +270,10 @@ export const ChatInterface: React.FC = () => {
               <Mic size={40} />
             </button>
             <button
-              onClick={() => setMessages([messages[0]])}
+              onClick={() => window.location.reload()}
               className="w-20 h-20 rounded-full flex items-center justify-center bg-blue-800 text-white hover:bg-blue-900 active:scale-95 transition-all shadow-lg focus-visible:ring-4 focus-visible:ring-blue-500 outline-none"
-              aria-label="Refresh chat"
-              title="Refresh Chat"
+              aria-label="Refresh app and chat"
+              title="Refresh App"
             >
               <RefreshCw size={40} />
             </button>
