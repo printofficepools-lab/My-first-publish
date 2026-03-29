@@ -17,7 +17,7 @@ export const ChatInterface: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: "Hello I'm Quadro Specifically tailored for quadriplegics and their caretakers. how can I help you Ask me anything?",
+      text: "Hello I'm Quadro Specifically tailored for quadriplegics and their caretakers. Tap the microphone and ask me anything.",
       sender: 'bot',
       timestamp: new Date(),
     },
@@ -105,7 +105,14 @@ export const ChatInterface: React.FC = () => {
 
       {/* Header */}
       <header className="p-2 border-b border-white/10 bg-blue-800 flex items-center z-10" role="banner">
-        <div className="w-14 h-14 shrink-0" aria-hidden="true" />
+        <button
+          onClick={() => window.location.reload()}
+          className="w-12 h-12 rounded-full flex items-center justify-center bg-blue-800 text-white hover:bg-blue-700 active:scale-95 transition-all border-2 border-white focus-visible:ring-2 focus-visible:ring-white outline-none shrink-0 ml-1"
+          aria-label="Refresh app and chat"
+          title="Refresh App"
+        >
+          <RefreshCw size={24} />
+        </button>
         <div className="flex-1 text-center">
           <h1 className="text-xl font-serif italic font-bold text-white leading-tight">
             <span className="block">Quadriplegia Support</span>
@@ -268,14 +275,6 @@ export const ChatInterface: React.FC = () => {
               aria-pressed={isListening}
             >
               <Mic size={40} />
-            </button>
-            <button
-              onClick={() => window.location.reload()}
-              className="w-20 h-20 rounded-full flex items-center justify-center bg-blue-800 text-white hover:bg-blue-900 active:scale-95 transition-all shadow-lg focus-visible:ring-4 focus-visible:ring-blue-500 outline-none"
-              aria-label="Refresh app and chat"
-              title="Refresh App"
-            >
-              <RefreshCw size={40} />
             </button>
           </div>
           
