@@ -17,7 +17,7 @@ export const ChatInterface: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: "Hello I'm Quadro Specifically tailored for quadriplegics and their caretakers. Tap the microphone and ask me anything.",
+      text: "Hello I'm Quadro the amazing AI assistant, specifically tailored for quadriplegics and their caretakers. Tap the microphone and ask me anything.",
       sender: 'bot',
       timestamp: new Date(),
     },
@@ -115,8 +115,8 @@ export const ChatInterface: React.FC = () => {
         </button>
         <div className="flex-1 text-center">
           <h1 className="text-xl font-serif italic font-bold text-white leading-tight">
-            <span className="block">Quadriplegia Support</span>
-            <span className="block">AI Assistant</span>
+            <span className="block">Quadro</span>
+            <span className="block text-sm opacity-90">Quadriplegia Support AI Assistant</span>
           </h1>
         </div>
         <div className="w-14 shrink-0" aria-hidden="true" />
